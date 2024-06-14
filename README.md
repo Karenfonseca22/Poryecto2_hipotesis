@@ -1,3 +1,2 @@
 # Poryecto2_hipotesis
-Paso uno del proyecto
-jhhgj
+5.1 Procesar y preparar base de datos
