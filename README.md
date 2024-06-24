@@ -116,6 +116,7 @@ FROM `proyecto-hipotesis-lab1.dataset.cast_integer_stream`
 > Para usar MAX, MIN y AVG es fundamental que esten en formato INTEGER, ya que si no lo identifica como numero no podra retornar exitosamente la consulta.
 
 ### Paso 7: Comprobar y cambiar tipo de dato
+El objetivo, es cambiar el tipo de dato , en STRING, a INTEGER
 
 ```sql
 SELECT *,
@@ -126,10 +127,20 @@ FROM
 WHERE
   streams NOT LIKE '%[^0-9]%'
 ```
-> Este texto r'^[0-9]+$' indican los caracteres que de texto en STRINGS
+> Este texto r'^[0-9]+$' indican los caracteres que de texto (STRINGS)
 
 La formula CAST me indica "conversión, convertir los datos"
 
 ### Paso 8: Crear nuevas variables
 
+En este paso se crea una nueva variable uniendo, año, mes y dia, en una misma, para que quede la fecha de lanzamiento en un mismo formato y en una misma variable.
+
+--- Formula para convertir el dato de fechas en STRINGS y asi poder pasarlo al formato de fecha, de año, mes y dia
+
+```sql
+SELECT
+  PARSE_DATE('%Y-%m-%d', CONCAT(CAST(released_year AS STRING), '-', CAST(released_month AS STRING), '-', CAST(released_day AS STRING))) AS fecha_lanzamiento
+FROM
+  `proyecto-hipotesis-lab1.dataset.track_in_spotify`
+```
 
