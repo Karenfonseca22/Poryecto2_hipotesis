@@ -209,7 +209,18 @@ ON
 Herramienta principal: PowerBI
 
 ### Paso 1: Agrupar datos según variables categóricas
-![image](https://github.com/Karenfonseca22/Poryecto2_hipotesis/assets/149629605/6478d35e-6dbc-498b-9ea2-f81466b52736)
+
+Se agruparon y plasmaron en una Tabla Matriz
+
+** Grafica de recuento de track_ids por artista
+![image](https://github.com/Karenfonseca22/Poryecto2_hipotesis/assets/149629605/0ffd1caf-9794-455e-8789-35056365bf2d)
+
+** Grafica de recuento de track_ids por año de lanzamiento
+![image](https://github.com/Karenfonseca22/Poryecto2_hipotesis/assets/149629605/400933e5-286d-499d-8efd-2c89bc1673e6)
+
+
+
+
 
 
 
