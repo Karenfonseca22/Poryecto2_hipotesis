@@ -89,7 +89,7 @@ EXCEPT (mode,`liveness_%`)
 FROM `proyecto-hipotesis-lab1.dataset.track_technical_info`
 ```
 ### Paso 5: Identificar y manejar datos discrepantes en variables categóricas
---- Formula para pasar de STRING A INTEGER
+--- Formula para pasar de STRING (Modo texto) A INTEGER (Numero)
 
 ```sql
 SELECT *,
@@ -100,10 +100,12 @@ FROM
 WHERE
   streams NOT LIKE '%[^0-9]%'
 ```
+> Este texto r'^[0-9]+$' indican los caracteres que de texto en STRINGS
 
+La formula CAST me indica "conversión, convertir los datos"
 
-
-
+### Paso 6: Identificar y manejar datos discrepantes en variables categóricas
+ Identificar y manejar datos discrepantes en variables numéricas
 
 
 
