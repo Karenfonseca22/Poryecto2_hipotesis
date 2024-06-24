@@ -1,5 +1,5 @@
 ### Proyecto2_hipotesis
-## Procesar y preparar base de datos
+## 🟦 5.1 Procesar y preparar base de datos
 ### PASO 1: Conectar/importar datos a otras herramientas
 
 Crear tu cuenta en Google BigQuery, en la consola y es muy importante ver que estas trabajando en el SANDBOX, o en español ZONA DE PRUEBAS.
@@ -144,3 +144,64 @@ FROM
   `proyecto-hipotesis-lab1.dataset.track_in_spotify`
 ```
 
+### Paso 8: Unir tablas
+Teniendo en cuenta que se han usado los anteriores procesos para la limpieza de las 3 tablas iniciales, es hora de unirlas. Este paso se logro con la formula de JOIN (LEFT JOIN, RIGHT JOIN, INNER JOIN), se decidio usar la fomrula de INNER JOIN, ya que todas se unirán a través del track_id, contando que ninguna de las tres tablas tiene este dato repetido o duplicado.
+
+```sql
+SELECT
+  T.*,
+  S.track_name_limpio,
+  S.artist_s__name_limpio,
+  S.artist_count,
+  S.streams_limpio,
+  S.released_year,
+  S.released_month,
+  S.released_day,
+  S.fecha_lanzamiento,
+  S.in_spotify_playlists,
+  S.in_spotify_charts,
+  C.in_apple_charts,
+  C.in_apple_playlists,
+  C.in_deezer_charts,
+  C.in_deezer_playlists,
+  C.in_shazam_charts,
+  (S.in_spotify_playlists + C.in_deezer_playlists + C.in_apple_playlists) AS total_participation_playlist
+FROM
+  `proyecto-hipotesis-lab1.dataset.track_in_competition_limpia` AS C
+INNER JOIN
+  `proyecto-hipotesis-lab1.dataset.track_spotify_limpia` AS S
+ON
+  C.track_id = S.track_id
+INNER JOIN
+  `proyecto-hipotesis-lab1.dataset.track_technical_limpia` AS T
+ON
+  C.track_id = T.track_id
+```
+
+### Paso 9: Construir tablas auxiliares
+¿Que son las tablas auxiliares? Son tablas en donde podemos hacer una consulta y usando el comando JOIN, se unira a la tabla general o prinicipal, esta no se creará como tabla, sino siendo auxiliar se podrá ver reflejada en la vista/tabla creada y mencionada en la consulta.
+
+```sql
+WITH
+  total_canciones_solistas AS(
+  SELECT
+  IF
+    (artist_count = 1, artist_s__name_limpio,'NO SOLISTA') AS solista,
+    COUNT (*) AS total_canciones
+  FROM
+    `proyecto-hipotesis-lab1.dataset.union_tablas`
+  GROUP BY
+    solista)
+SELECT
+  ut.*,
+  IFNULL(tcs.solista, 'No es solista') AS solista,
+  IFNULL(tcs.total_canciones,0) AS total_canciones_solista_
+FROM
+  `proyecto-hipotesis-lab1.dataset.union_tablas` AS ut
+LEFT JOIN
+  total_canciones_solistas AS tcs
+ON
+  tcs.solista = ut.artist_s__name_limpio
+```
+
+## 🟪 5.2 Hacer un análisis exploratorio
