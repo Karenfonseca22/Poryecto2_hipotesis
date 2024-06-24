@@ -89,7 +89,33 @@ EXCEPT (mode,`liveness_%`)
 FROM `proyecto-hipotesis-lab1.dataset.track_technical_info`
 ```
 ### Paso 5: Identificar y manejar datos discrepantes en variables categóricas
---- Formula para pasar de STRING (Modo texto) A INTEGER (Numero)
+-- CONSULTA PARA QUITAR LOS CARACTERES ESPCIALES DE LOS NOMBRES DE LOS ARTISTAS Y LAS CANCIONES ---
+SELECT
+  track_name,
+  artist_s__name,
+  REGEXP_REPLACE(track_name,r'[^a-zA-Z0-9]', ' ') AS track_name_limpia,
+  REGEXP_REPLACE(artist_s__name,r'[^a-zA-Z0-9]', ' ') AS artist_s__name_limpia,
+FROM
+  `proyecto-hipotesis-lab1.dataset.track_in_spotify`
+
+> Este texto r'[^a-zA-Z0-9]' indica caracteres especiales
+
+
+### Paso 6: Identificar y manejar datos discrepantes en variables categóricas
+Identificar y manejar datos discrepantes en variables numéricas
+
+Luego de esta limpieza, podemos agregar variables nuevas, datos adicionales que son importantes para concluir y validar hipotesis al final del proyecto, las variables nuevas también sirven para hacer la lectura de los datos mas facil, ejemplo, cual es el dato mayor en estos datos, cual es el promedio de las repdroducciónes.
+
+```sql
+SELECT
+MAX(stream_limpio) AS maximo,
+MIN(stream_limpio) AS minimo,
+AVG (stream_limpio) AS promedio,
+FROM `proyecto-hipotesis-lab1.dataset.cast_integer_stream`
+```
+> Para usar MAX, MIN y AVG es fundamental que esten en formato INTEGER, ya que si no lo identifica como numero no podra retornar exitosamente la consulta.
+
+### Paso 7: Comprobar y cambiar tipo de dato
 
 ```sql
 SELECT *,
@@ -104,8 +130,6 @@ WHERE
 
 La formula CAST me indica "conversión, convertir los datos"
 
-### Paso 6: Identificar y manejar datos discrepantes en variables categóricas
- Identificar y manejar datos discrepantes en variables numéricas
-
+### Paso 8: Crear nuevas variables
 
 
