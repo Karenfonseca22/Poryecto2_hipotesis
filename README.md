@@ -63,6 +63,7 @@ FROM
   `proyecto-hipotesis-lab1.dataset.track_technical_info`
 
 
+### PASO 3
 
 
 
