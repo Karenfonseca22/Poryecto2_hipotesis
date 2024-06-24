@@ -1,5 +1,6 @@
 ### Proyecto2_hipotesis
 ## 🟦 5.1 Procesar y preparar base de datos
+Herramienta principal: BiQuery
 ### PASO 1: Conectar/importar datos a otras herramientas
 
 Crear tu cuenta en Google BigQuery, en la consola y es muy importante ver que estas trabajando en el SANDBOX, o en español ZONA DE PRUEBAS.
@@ -205,3 +206,6 @@ ON
 ```
 
 ## 🟪 5.2 Hacer un análisis exploratorio
+Herramienta principal: PowerBI
+
+
