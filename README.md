@@ -61,9 +61,38 @@ SELECT
   SUM(CASE WHEN `speechiness_%` IS NULL THEN 1 ELSE 0 END) AS `spechiness_%`,
 FROM
   `proyecto-hipotesis-lab1.dataset.track_technical_info`
+```
+
+### Paso 3: Identificar y manejar valores duplicados
+Identificar duplicados a través de comandos SQL COUNT, GROUP BY, HAVING
+
+--- Se menciona la columna en la que queremos evaluar el duplicado, y le damos el nombre de columna a los reultados, ejemplo AS num_tracks. Luego se agrupan esa columna en la cual se van a contar, si no se agrupa, BigQuery no sabe en donde buscar.
+
+```sql
+SELECT 
+track_id,
+COUNT(*) AS num_tracks
+FROM `proyecto-hipotesis-lab1.dataset.track_technical_info`
+GROUP BY
+track_id
+HAVING
+num_tracks >1
+```
+
+### Paso 4: Identificar y manejar datos fuera del alcance del análisis
+Manejar variables que no son útiles para el análisis a través de comandos SQL SELECT EXCEPT
+
+Para este punto se analizo la formula EXCEPT para sacar las variables que tenian el 10% con datos como null
+```sql
+SELECT *
+EXCEPT (mode,`liveness_%`)
+FROM `proyecto-hipotesis-lab1.dataset.track_technical_info`
+```
 
 
-### PASO 3
+
+
+
 
 
 
