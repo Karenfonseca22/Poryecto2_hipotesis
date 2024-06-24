@@ -1,5 +1,5 @@
 ### Proyecto2_hipotesis
-# Procesar y preparar base de datos
+## Procesar y preparar base de datos
 ### PASO 1: Conectar/importar datos a otras herramientas
 
 Crear tu cuenta en Google BigQuery, en la consola y es muy importante ver que estas trabajando en el SANDBOX, o en español ZONA DE PRUEBAS.
@@ -88,8 +88,18 @@ SELECT *
 EXCEPT (mode,`liveness_%`)
 FROM `proyecto-hipotesis-lab1.dataset.track_technical_info`
 ```
+### Paso 5: Identificar y manejar datos discrepantes en variables categóricas
+--- Formula para pasar de STRING A INTEGER
 
-
+```sql
+SELECT *,
+IF
+  (REGEXP_CONTAINS(streams, r'^[0-9]+$'), CAST(streams AS INT64), NULL) AS stream_limpio
+FROM
+  `proyecto-hipotesis-lab1.dataset.track_in_spotify`
+WHERE
+  streams NOT LIKE '%[^0-9]%'
+```
 
 
 
