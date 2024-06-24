@@ -1,11 +1,15 @@
 ### Proyecto2_hipotesis
-### Procesar y preparar base de datos
-# PASO 1: Conectar/importar datos a otras herramientas
+# Procesar y preparar base de datos
+### PASO 1: Conectar/importar datos a otras herramientas
 
 Crear tu cuenta en Google BigQuery, en la consola y es muy importante ver que estas trabajando en el SANDBOX, o en español ZONA DE PRUEBAS.
-Para importar tus tablas desde el ordenador, mirar este video https://www.youtube.com/watch?v=BN8WAOtJ4CY, desde el minuto 6 se puede observar como crear un conjunto de datos y también sus tablas
+Para importar tus tablas desde el ordenador, mirar este video https://www.youtube.com/watch?v=BN8WAOtJ4CY, desde el minuto 6 se puede observar como crear un conjunto de datos y también sus tablas.
+
+- Para importar las tablas, primero se debe crear un dataset, y nombrarlo. Luego se suben los datos, en este caso las tres tablas estaban en archivos de Excel
 
 ### PASO 2: Identificar y manejar valores nulos
+
+Desición: Identificarlos primero, y al ver que estos valores nulos hacen parte del 10% de los datos, fueron removidos de las tablas (simplemente no se mencionan en el SELECT).
 
 **Consulta en SQL para la tabla de track_in_competition**
 ```sql
@@ -37,4 +41,7 @@ OR released_day IS NULL
 OR in_spotify_playlists IS NULL
 OR in_spotify_charts IS NULL
 OR streams IS NULL
+```
+
+
 
