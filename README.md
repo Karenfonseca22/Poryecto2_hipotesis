@@ -208,4 +208,9 @@ ON
 ## 🟪 5.2 Hacer un análisis exploratorio
 Herramienta principal: PowerBI
 
+### Paso 1: Agrupar datos según variables categóricas
+![image](https://github.com/Karenfonseca22/Poryecto2_hipotesis/assets/149629605/6478d35e-6dbc-498b-9ea2-f81466b52736)
+![image](https://github.com/Karenfonseca22/Poryecto2_hipotesis/assets/149629605/6478d35e-6dbc-498b-9ea2-f81466b52736)
+
+
 
